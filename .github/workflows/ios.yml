@@ -15,6 +15,12 @@ jobs:
         device: ["iPhone 15 Pro", "iPhone SE (3rd generation)", "iPhone 16 Pro Max"]
     steps:
       - uses: actions/checkout@v4
+      - id: xcode
+        run: echo "version=$(xcodebuild -version | head -1 | tr ' ' '-')" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: build/Build/Products
+          key: harness-${{ steps.xcode.outputs.version }}-${{ hashFiles('harness/**') }}
       - run: brew install xcodegen
       - run: bash run.sh "${{ matrix.device }}" ${{ inputs.url }}
       - uses: actions/upload-artifact@v4

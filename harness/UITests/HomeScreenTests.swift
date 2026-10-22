@@ -36,7 +36,6 @@ final class HomeScreenTests: XCTestCase {
 
     func testHomeScreenWebApp() throws {
         safari.activate()
-        sleep(6)
         // First-run Safari tip ("View Bookmarks, Share Menu…"): it can show up late and swallows the next tap.
         tap(safari, ["Close"], timeout: 8)
         shot("safari", safari)
@@ -48,7 +47,7 @@ final class HomeScreenTests: XCTestCase {
             shot("menu", safari)
             XCTAssertTrue(tap(safari, ["Share"]), "Share not found")
         }
-        sleep(2)
+        sleep(1)
         shot("share-sheet", safari)
         var found = tap(safari, ["Add to Home Screen"], timeout: 3)
         for _ in 0..<2 where !found { safari.swipeUp(); found = tap(safari, ["Add to Home Screen"], timeout: 2) }
@@ -59,25 +58,26 @@ final class HomeScreenTests: XCTestCase {
         shot("add-sheet", safari)
         XCTAssertTrue(add.isEnabled, "Add button stayed disabled")
         add.tap()
-        sleep(3)
+        sleep(1)
 
         XCUIDevice.shared.press(.home)
-        sleep(2)
         let icon = springboard.icons.matching(NSPredicate(format: "label CONTAINS[c] 'setcrew'")).firstMatch
+        _ = icon.waitForExistence(timeout: 10)
         for _ in 0..<3 where icon.exists && !icon.isHittable { springboard.swipeLeft(); sleep(1) }
         shot("home-screen", springboard)
         XCTAssertTrue(icon.exists, "SetCrew icon not on the Home Screen")
         icon.tap()
-        sleep(8)
 
-        // ponytail: guessed bundle id of Home Screen web apps; the UI tree in OUT shows the real one if this misses.
+        // Home Screen web apps run as "Web" (com.apple.webapp); springboard is the fallback for coordinate taps.
         let webapp = XCUIApplication(bundleIdentifier: "com.apple.webapp")
+        let startDemo = webapp.buttons["Start demo"]
+        _ = startDemo.waitForExistence(timeout: 20)
         let app = webapp.state == .runningForeground ? webapp : springboard
         shot("webapp-open", app)
 
         // Demo build: one button, no account, example history pre-filled.
         tap(app, ["Start demo"])
-        sleep(4)
+        _ = app.buttons["Train"].waitForExistence(timeout: 10)
         shot("demo-started", app)
 
         // Tab bar: Home · Train · + · Feed · Progress. Coordinate taps when labels aren't reachable.
@@ -86,7 +86,7 @@ final class HomeScreenTests: XCTestCase {
             if !tap(app, [tab], timeout: 2) {
                 app.coordinate(withNormalizedOffset: CGVector(dx: (Double(slots[tab]!) + 0.5) / 5, dy: 0.95)).tap()
             }
-            sleep(3)
+            sleep(2) // let the screen transition play out on the video
             shot(tab.lowercased(), app)
         }
     }
