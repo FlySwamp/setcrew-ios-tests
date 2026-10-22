@@ -7,15 +7,18 @@ on:
 jobs:
   sim:
     runs-on: macos-26
-    timeout-minutes: 30
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
         device: ["iPhone 15 Pro", "iPhone SE (3rd generation)", "iPhone 16 Pro Max"]
     steps:
       - uses: actions/checkout@v4
-      - run: pip3 install --break-system-packages selenium
-      - run: python3 run.py "${{ matrix.device }}" "${{ inputs.url }}"
+      - run: brew install xcodegen
+      - run: bash run.sh "${{ matrix.device }}" "${{ inputs.url }}"
+        env:
+          APP_USER: ${{ secrets.APP_USER }}
+          APP_PASS: ${{ secrets.APP_PASS }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

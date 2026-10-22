@@ -1,0 +1,26 @@
+# Empty host app + UI test bundle: the UI test drives Safari and the Home Screen, not this app.
+name: Harness
+options:
+  bundleIdPrefix: dev.flyswamp
+  deploymentTarget: { iOS: "17.0" }
+settings:
+  base:
+    GENERATE_INFOPLIST_FILE: YES
+    CODE_SIGN_IDENTITY: "-"
+    SWIFT_VERSION: "5.0"
+targets:
+  Host:
+    type: application
+    platform: iOS
+    sources: [Host]
+    settings: { base: { INFOPLIST_KEY_UILaunchScreen_Generation: YES } }
+  UITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies: [{ target: Host }]
+    settings: { base: { TEST_TARGET_NAME: Host } }
+schemes:
+  Harness:
+    build: { targets: { Host: all } }
+    test: { targets: [UITests] }
