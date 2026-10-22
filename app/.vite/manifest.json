@@ -1,0 +1,265 @@
+{
+  "_dist-BM9z_ABF.js": {
+    "file": "assets/dist-BM9z_ABF.js",
+    "name": "dist"
+  },
+  "index.html": {
+    "file": "assets/index-MrWp3Zvw.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "dynamicImports": [
+      "src/locales/de.js",
+      "src/locales/es.js",
+      "src/locales/fr.js",
+      "src/locales/hi.js",
+      "src/locales/it.js",
+      "src/locales/ko.js",
+      "src/locales/pl.js",
+      "src/locales/pt.js",
+      "src/locales/ru.js",
+      "src/locales/tr.js",
+      "src/locales/zh.js",
+      "src/instr/es.js",
+      "src/instr/fr.js",
+      "src/instr/hi.js",
+      "src/instr/it.js",
+      "src/instr/ko.js",
+      "src/instr/pl.js",
+      "src/instr/ru.js",
+      "src/instr/tr.js",
+      "src/instr/zh.js",
+      "node_modules/@capacitor/filesystem/dist/esm/index.js",
+      "node_modules/@capacitor/local-notifications/dist/esm/index.js",
+      "node_modules/@capacitor/share/dist/esm/index.js",
+      "src/lib/demoSeed.js",
+      "src/lib/scanner.js",
+      "src/lib/body-paths.js"
+    ],
+    "css": [
+      "assets/index-BHk7PjlD.css"
+    ],
+    "assets": [
+      "assets/exercise-instructions-data-BlBrs-vR.json"
+    ]
+  },
+  "node_modules/@capacitor/filesystem/dist/esm/index.js": {
+    "file": "assets/esm-jrH6lNW1.js",
+    "name": "esm",
+    "src": "node_modules/@capacitor/filesystem/dist/esm/index.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_dist-BM9z_ABF.js"
+    ],
+    "dynamicImports": [
+      "node_modules/@capacitor/filesystem/dist/esm/web.js"
+    ]
+  },
+  "node_modules/@capacitor/filesystem/dist/esm/web.js": {
+    "file": "assets/web-2IeJEPEK.js",
+    "name": "web",
+    "src": "node_modules/@capacitor/filesystem/dist/esm/web.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_dist-BM9z_ABF.js",
+      "node_modules/@capacitor/filesystem/dist/esm/index.js"
+    ]
+  },
+  "node_modules/@capacitor/local-notifications/dist/esm/index.js": {
+    "file": "assets/esm-BEgFF90_.js",
+    "name": "esm",
+    "src": "node_modules/@capacitor/local-notifications/dist/esm/index.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_dist-BM9z_ABF.js"
+    ],
+    "dynamicImports": [
+      "node_modules/@capacitor/local-notifications/dist/esm/web.js"
+    ]
+  },
+  "node_modules/@capacitor/local-notifications/dist/esm/web.js": {
+    "file": "assets/web-CKxJfBtN.js",
+    "name": "web",
+    "src": "node_modules/@capacitor/local-notifications/dist/esm/web.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_dist-BM9z_ABF.js"
+    ]
+  },
+  "node_modules/@capacitor/share/dist/esm/index.js": {
+    "file": "assets/esm-DEwSM7i6.js",
+    "name": "esm",
+    "src": "node_modules/@capacitor/share/dist/esm/index.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_dist-BM9z_ABF.js"
+    ],
+    "dynamicImports": [
+      "node_modules/@capacitor/share/dist/esm/web.js"
+    ]
+  },
+  "node_modules/@capacitor/share/dist/esm/web.js": {
+    "file": "assets/web-C8FZOtxJ.js",
+    "name": "web",
+    "src": "node_modules/@capacitor/share/dist/esm/web.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_dist-BM9z_ABF.js"
+    ]
+  },
+  "node_modules/zxing-wasm/dist/reader/zxing_reader.wasm": {
+    "file": "assets/zxing_reader-Bb9Mx2Pu.wasm",
+    "src": "node_modules/zxing-wasm/dist/reader/zxing_reader.wasm"
+  },
+  "src/instr/es.js": {
+    "file": "assets/es-B6eXLS-1.js",
+    "name": "es",
+    "src": "src/instr/es.js",
+    "isDynamicEntry": true
+  },
+  "src/instr/fr.js": {
+    "file": "assets/fr-6mJbq5QV.js",
+    "name": "fr",
+    "src": "src/instr/fr.js",
+    "isDynamicEntry": true
+  },
+  "src/instr/hi.js": {
+    "file": "assets/hi-BEuJj137.js",
+    "name": "hi",
+    "src": "src/instr/hi.js",
+    "isDynamicEntry": true
+  },
+  "src/instr/it.js": {
+    "file": "assets/it-B3DFTmeW.js",
+    "name": "it",
+    "src": "src/instr/it.js",
+    "isDynamicEntry": true
+  },
+  "src/instr/ko.js": {
+    "file": "assets/ko-CmKuB3JG.js",
+    "name": "ko",
+    "src": "src/instr/ko.js",
+    "isDynamicEntry": true
+  },
+  "src/instr/pl.js": {
+    "file": "assets/pl-BjwyCb8S.js",
+    "name": "pl",
+    "src": "src/instr/pl.js",
+    "isDynamicEntry": true
+  },
+  "src/instr/ru.js": {
+    "file": "assets/ru-D8MGg0MX.js",
+    "name": "ru",
+    "src": "src/instr/ru.js",
+    "isDynamicEntry": true
+  },
+  "src/instr/tr.js": {
+    "file": "assets/tr-DeLJRhY1.js",
+    "name": "tr",
+    "src": "src/instr/tr.js",
+    "isDynamicEntry": true
+  },
+  "src/instr/zh.js": {
+    "file": "assets/zh-Dv1YUk6Y.js",
+    "name": "zh",
+    "src": "src/instr/zh.js",
+    "isDynamicEntry": true
+  },
+  "src/lib/body-paths.js": {
+    "file": "assets/body-paths-D_5SR19s.js",
+    "name": "body-paths",
+    "src": "src/lib/body-paths.js",
+    "isDynamicEntry": true
+  },
+  "src/lib/demoSeed.js": {
+    "file": "assets/demoSeed-DWfKw27C.js",
+    "name": "demoSeed",
+    "src": "src/lib/demoSeed.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "src/lib/exercise-instructions-data.json": {
+    "file": "assets/exercise-instructions-data-BlBrs-vR.json",
+    "src": "src/lib/exercise-instructions-data.json"
+  },
+  "src/lib/scanner.js": {
+    "file": "assets/scanner-Xv7ov3eN.js",
+    "name": "scanner",
+    "src": "src/lib/scanner.js",
+    "isDynamicEntry": true,
+    "assets": [
+      "assets/zxing_reader-Bb9Mx2Pu.wasm"
+    ]
+  },
+  "src/locales/de.js": {
+    "file": "assets/de-D0OGa81_.js",
+    "name": "de",
+    "src": "src/locales/de.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/es.js": {
+    "file": "assets/es-DuDeNVqj.js",
+    "name": "es",
+    "src": "src/locales/es.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/fr.js": {
+    "file": "assets/fr-yZHTi_EH.js",
+    "name": "fr",
+    "src": "src/locales/fr.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/hi.js": {
+    "file": "assets/hi-AJAZrye-.js",
+    "name": "hi",
+    "src": "src/locales/hi.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/it.js": {
+    "file": "assets/it-B2ZSaZIq.js",
+    "name": "it",
+    "src": "src/locales/it.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/ko.js": {
+    "file": "assets/ko-CPq4qekr.js",
+    "name": "ko",
+    "src": "src/locales/ko.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/pl.js": {
+    "file": "assets/pl-BLqY5i48.js",
+    "name": "pl",
+    "src": "src/locales/pl.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/pt.js": {
+    "file": "assets/pt-xq5qmvgv.js",
+    "name": "pt",
+    "src": "src/locales/pt.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/ru.js": {
+    "file": "assets/ru-DkQmgumV.js",
+    "name": "ru",
+    "src": "src/locales/ru.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/tr.js": {
+    "file": "assets/tr-DqbkEsGC.js",
+    "name": "tr",
+    "src": "src/locales/tr.js",
+    "isDynamicEntry": true
+  },
+  "src/locales/zh.js": {
+    "file": "assets/zh-Ck7pv60n.js",
+    "name": "zh",
+    "src": "src/locales/zh.js",
+    "isDynamicEntry": true
+  }
+}

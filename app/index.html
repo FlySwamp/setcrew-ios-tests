@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SetCrew</title>
+<meta name="description" content="Track your workouts, build your routines, and share with your crew.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f5f7">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- Opaque system status bar in the home-screen app: the page starts below it, so iOS 26 status-bar
+     glass never blends over the title bar (AUDIT.md C3). viewport-fit=cover keeps the bottom inset. -->
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="SetCrew">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="setcrew-icon-180.png">
+<link rel="icon" type="image/svg+xml" href="brand/setcrew-logo.svg">
+<style>
+html,body{margin:0;background:#f4f5f7;color:#2b2f36;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+html[data-theme="dark"],html[data-theme="dark"] body{background:#0a0a0c;color:#e5e5e7}
+/* Launch screen (owner request, MyFitnessPal style): primary blue, SetCrew mark, gone once the app is ready. */
+#splash{position:fixed;inset:0;z-index:2147483646;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#0a66ee;color:#fff;transition:opacity .25s ease}
+#splash img{width:88px;height:88px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+#splash span{font-size:40px;font-weight:700;letter-spacing:-.5px}
+#splash.out{opacity:0;pointer-events:none}
+html:not(.js) #splash{display:none}
+@media (prefers-reduced-motion:reduce){#splash{transition:none}}
+#boot-recovery{position:relative;z-index:2147483647;max-width:400px;margin:24vh auto;padding:24px;line-height:1.5}
+#boot-recovery button{min-height:44px;padding:10px 20px;border:1px solid #8886;border-radius:8px;background:transparent;color:inherit;font:inherit}
+</style>
+<script>
+// Apply the saved theme before the first paint, without masking the application.
+document.documentElement.classList.add('js')
+try{const t=JSON.parse(localStorage.getItem('gym_state_v1')||'{}').theme;document.documentElement.dataset.theme=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}catch{}
+</script>
+  <script type="module" crossorigin src="./assets/index-MrWp3Zvw.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BHk7PjlD.css">
+</head>
+<body>
+<div id="splash" aria-hidden="true"><img src="brand/setcrew-logo.svg" alt=""><span>SetCrew</span></div>
+<div id="root"></div>
+<div id="boot-recovery" hidden role="alert"><p>SetCrew is taking longer than usual to open.</p><button type="button" id="boot-reload">Reload</button></div>
+<noscript><p>Enable JavaScript to open SetCrew.</p></noscript>
+<script>
+(() => {
+  const recovery=document.getElementById('boot-recovery')
+  document.getElementById('boot-reload').addEventListener('click',()=>location.reload())
+  const slow=setTimeout(()=>{recovery.hidden=false},12000)
+  // Keep the launch screen at least 600 ms so it reads as a launch, not a flash.
+  const splash=document.getElementById('splash')
+  window.setcrewAppReady=()=>{clearTimeout(slow);recovery.remove();delete window.setcrewAppReady
+    setTimeout(()=>{splash.classList.add('out');setTimeout(()=>splash.remove(),300)},Math.max(0,600-performance.now()))}
+})()
+</script>
+</body>
+</html>

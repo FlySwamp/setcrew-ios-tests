@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">SetCrew SC monogram</title>
+  <desc id="desc">Solid green SC monogram on charcoal, with a 48-unit central gap, aligned cap and base lines, and three 96-unit openings.</desc>
+  <rect width="1024" height="1024" fill="#191919"/>
+  <g fill="#00EF68">
+    <path id="letter-s" d="M400 128 H456 A32 32 0 0 1 488 160 V336 A32 32 0 0 1 456 368 H344 A16 16 0 0 0 328 384 V448 A16 16 0 0 0 344 464 H456 A32 32 0 0 1 488 496 V864 A32 32 0 0 1 456 896 H400 A272 176 0 0 1 128 720 A32 32 0 0 1 160 688 H272 A16 16 0 0 0 288 672 V608 A16 16 0 0 0 272 592 H160 A32 32 0 0 1 128 560 V432 A272 304 0 0 1 400 128 Z"/>
+    <path id="letter-c" d="M568 128 H576 A320 288 0 0 1 896 416 V432 A32 32 0 0 1 864 464 H752 A16 16 0 0 0 736 480 V544 A16 16 0 0 0 752 560 H864 A32 32 0 0 1 896 592 V608 A320 288 0 0 1 576 896 H568 A32 32 0 0 1 536 864 V160 A32 32 0 0 1 568 128 Z"/>
+  </g>
+</svg>

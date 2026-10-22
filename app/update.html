@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Update SetCrew</title>
+<body style="background:#101012;color:white;font:18px system-ui;padding:32px;max-width:480px;margin:auto">
+<h1>Update SetCrew</h1><p>This refreshes the app files. Your saved workouts and account stay on this device.</p>
+<button id="update" style="font:inherit;padding:16px;border-radius:12px;background:#24cf5b">Update now</button><p id="status"></p>
+<script>
+document.querySelector('#update').onclick = async () => {
+  const button = document.querySelector('#update'), status = document.querySelector('#status');
+  button.disabled = true; status.textContent = 'Updating…';
+  try {
+    // Confirm that the fresh app is reachable before removing its offline copy.
+    // Fetch with a unique query bypasses both the versioned shell and HTTP cache.
+    const scope = new URL('./', location.href).href;
+    const fresh = new URL(scope); fresh.searchParams.set('update-check', Date.now());
+    const response = await fetch(fresh, { cache: 'no-store', redirect: 'error' });
+    if (!response.ok || !response.headers.get('Content-Type')?.includes('text/html') || !(await response.text()).includes('id="root"')) throw new Error('App unavailable');
+    if ('serviceWorker' in navigator) for (const r of await navigator.serviceWorker.getRegistrations()) if (r.scope === scope) await r.unregister();
+    if ('caches' in window) for (const key of await caches.keys()) if (key.startsWith('opengym-phone-')) await caches.delete(key);
+    location.replace(scope + '?updated=' + Date.now());
+  } catch { status.textContent = 'Could not update. Check your connection and try again.'; button.disabled = false; }
+};
+</script></body></html>

@@ -1,7 +1,7 @@
 import XCTest
 
-/// Like a friend would: Safari → Share → Add to Home Screen → tap the icon → full-screen app → sign in → tabs.
-/// Env (from run.sh): OUT = folder for screenshots, APP_USER / APP_PASS = optional test account.
+/// Like a friend would: Safari → Share → Add to Home Screen → tap the icon → full-screen app → Start demo → tabs.
+/// Env (from run.sh): OUT = folder for screenshots.
 @MainActor
 final class HomeScreenTests: XCTestCase {
     let env = ProcessInfo.processInfo.environment
@@ -51,15 +51,18 @@ final class HomeScreenTests: XCTestCase {
         var found = tap(safari, ["Add to Home Screen"], timeout: 3)
         for _ in 0..<2 where !found { safari.swipeUp(); found = tap(safari, ["Add to Home Screen"], timeout: 2) }
         XCTAssertTrue(found, "Add to Home Screen not found")
-        sleep(2)
+        // The sheet loads the page's name and icon first; "Add" stays greyed out until then.
+        let add = safari.buttons["Add"]
+        for _ in 0..<40 where !(add.exists && add.isEnabled) { usleep(500_000) }
         shot("add-sheet", safari)
-        XCTAssertTrue(tap(safari, ["Add"]), "Add button not found")
+        XCTAssertTrue(add.isEnabled, "Add button stayed disabled")
+        add.tap()
         sleep(3)
 
         XCUIDevice.shared.press(.home)
         sleep(2)
         let icon = springboard.icons.matching(NSPredicate(format: "label CONTAINS[c] 'setcrew'")).firstMatch
-        for _ in 0..<3 where !(icon.exists && icon.isHittable) { springboard.swipeLeft(); sleep(1) }
+        for _ in 0..<3 where icon.exists && !icon.isHittable { springboard.swipeLeft(); sleep(1) }
         shot("home-screen", springboard)
         XCTAssertTrue(icon.exists, "SetCrew icon not on the Home Screen")
         icon.tap()
@@ -70,15 +73,10 @@ final class HomeScreenTests: XCTestCase {
         let app = webapp.state == .runningForeground ? webapp : springboard
         shot("webapp-open", app)
 
-        if let user = env["APP_USER"], !user.isEmpty, let pass = env["APP_PASS"] {
-            let field = app.textFields.firstMatch
-            if field.waitForExistence(timeout: 5) {
-                field.tap(); field.typeText(user)
-                app.secureTextFields.firstMatch.tap(); app.secureTextFields.firstMatch.typeText(pass + "\n")
-                sleep(6)
-            }
-            shot("signed-in", app)
-        }
+        // Demo build: one button, no account, example history pre-filled.
+        tap(app, ["Start demo"])
+        sleep(4)
+        shot("demo-started", app)
 
         // Tab bar: Home · Train · + · Feed · Progress. Coordinate taps when labels aren't reachable.
         let slots = ["Train": 1, "Feed": 3, "Progress": 4, "Home": 0]

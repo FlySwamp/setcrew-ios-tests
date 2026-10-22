@@ -1,1 +1,3 @@
 results/
+# 93 MB food database: food search is not part of these tests
+app/food/

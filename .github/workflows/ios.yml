@@ -3,7 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        default: https://opengym.runs-on.dev
+        description: Leave empty for the demo build in app/
+        default: ""
 jobs:
   sim:
     runs-on: macos-26
@@ -15,10 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: brew install xcodegen
-      - run: bash run.sh "${{ matrix.device }}" "${{ inputs.url }}"
-        env:
-          APP_USER: ${{ secrets.APP_USER }}
-          APP_PASS: ${{ secrets.APP_PASS }}
+      - run: bash run.sh "${{ matrix.device }}" ${{ inputs.url }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
