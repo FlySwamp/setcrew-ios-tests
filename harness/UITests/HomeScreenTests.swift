@@ -37,11 +37,13 @@ final class HomeScreenTests: XCTestCase {
     func testHomeScreenWebApp() throws {
         safari.activate()
         sleep(6)
-        tap(safari, ["Close"], timeout: 2) // first-run Safari tip
+        // First-run Safari tip ("View Bookmarks, Share Menu…"): it can show up late and swallows the next tap.
+        tap(safari, ["Close"], timeout: 8)
         shot("safari", safari)
 
         // iOS 26 puts Share in the "…" menu; older iOS has it in the toolbar.
         if !tap(safari, ["Share"], timeout: 2) {
+            tap(safari, ["Close"], timeout: 1)
             tap(safari, ["More", "Page Menu", "Tab Menu"])
             shot("menu", safari)
             XCTAssertTrue(tap(safari, ["Share"]), "Share not found")
