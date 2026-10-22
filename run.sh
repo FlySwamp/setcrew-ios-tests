@@ -13,7 +13,7 @@ xcrun simctl bootstatus "$UDID" -b
 (cd harness && xcodegen generate)
 xcodebuild build-for-testing -project harness/Harness.xcodeproj -scheme Harness -destination "id=$UDID" -derivedDataPath build -quiet || exit 1
 
-xcrun simctl io "$UDID" recordVideo --codec=h264 --force "$OUT/video.mp4" & REC=$!
+xcrun simctl io "$UDID" recordVideo --codec=h264 --mask=black --force "$OUT/video.mp4" & REC=$!
 sleep 2
 xcrun simctl openurl "$UDID" "$URL"
 TEST_RUNNER_OUT="$OUT" xcodebuild test-without-building -project harness/Harness.xcodeproj -scheme Harness -destination "id=$UDID" -derivedDataPath build > "$OUT/test-log.txt" 2>&1
